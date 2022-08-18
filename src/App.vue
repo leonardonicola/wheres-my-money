@@ -1,32 +1,61 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <Home/>
+    <Budgets/>
   </div>
 </template>
 
+<script>
+import Budgets from './views/Budgets.vue'
+import Home from './views/Home.vue'
+export default {
+  components:{Budgets, Home}
+}
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+*{
+  box-sizing: border-box;
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+html, body {
+  height: 100%;
+  overflow-y: hidden;
 }
 
-nav {
-  padding: 30px;
+#app{
+  display: flex;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
 
-    &.router-link-exact-active {
-      color: #42b983;
+.expenses{
+  grid-row-start: 2;
+  grid-row-end: 4;
+  
+  &__title{
+    display: flex;
+    gap: 1rem;
+    color: #261D56;
+
+    h1:first-of-type{
+      font-weight: bolder;
+    }
+
+    h1:last-of-type{
+      font-weight: 400;
     }
   }
 }
+
+.fade-enter-active,
+.fade-leave-active{
+  transition: all .3s ease;
+}
+
+.fade-enter,
+.fade-leave-to{
+  opacity: 0;
+}
+
 </style>

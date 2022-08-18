@@ -1,0 +1,137 @@
+<template>
+  <div class="budgets">
+    <button>+ ADD EXPENSE</button>
+    <h2>Budgets</h2>
+    <router-link to="/health">
+      <div class="budgets__category health">
+        <fa icon="heart"/>
+        <p>Health</p>
+        <p class="budgets__text">{{currency(health)}}</p>
+      </div>
+    </router-link>
+    <router-link to="/essentials">
+      <div class="budgets__category essentials">
+        <fa icon="shopping-bag"/>
+        <p>Essentials</p>
+        <p class="budgets__text">{{currency(essentials)}}</p>
+      </div>
+    </router-link>
+    <router-link to="/entertainment">
+      <div class="budgets__category entertainment">
+        <fa icon="film"/>
+        <p>Entertainment</p>
+        <p class="budgets__text"> {{currency(entertainment)}}</p>
+      </div>
+    </router-link>
+    <div class="budgets__navbar">
+      <router-link to="/">
+        <fa icon="house"/>
+      </router-link>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data(){
+    return{
+      essentials: this.$store.state.essentials.budget,
+      health: this.$store.state.health.budget,
+      entertainment: this.$store.state.entertainment.budget
+    }
+  },
+  methods:{
+    currency(cur){
+      return "$" + cur.toLocaleString('en-us', {minimumFractionDigits: 0});
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+.budgets{
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  padding: 40px;
+  height: 100vh;
+  background-color: #F6F7FF;
+
+  a{
+    text-decoration: none;
+  }
+
+  svg{
+    color: black;
+    font-size: 1.3rem;
+  }
+
+  p{
+    font-size: .9rem;
+  }
+
+  button{
+    border: 0;
+    padding: 1.25rem;
+    border-radius: 1.25rem;
+    background-color: #2BC3A9;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  &__navbar{
+    display: flex;
+    gap: 2rem;
+    padding: 1.3rem .2rem;
+  }
+
+  
+  &__text{
+      position: absolute;
+      right: 1.875rem;
+  }
+
+  &__category{
+    display: flex;
+    position: relative;
+    align-items: center;
+    gap: 1.3rem;
+    height: 100px;
+    margin: 0.625rem 0;
+    padding: 0 1.875rem;
+    border-radius: 1.25rem;
+    background-color: #E9EBF4;
+    color: #fff;
+    font-weight: bold;
+
+
+  }
+
+  .health{
+
+    background-color: #D2ECF3;
+
+    svg, p{
+      color: #4f8391;
+    }
+  }
+
+  .essentials{
+    background-color: #E1E3FF;
+
+    svg, p{
+      color: #a888c0;
+    }
+  }
+
+  .entertainment{
+
+    background-color: #E1E3FF;
+
+    svg,p{
+      color: #8288C1;
+    }
+  }
+
+}
+</style>
