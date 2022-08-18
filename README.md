@@ -1,4 +1,4 @@
-# wheresmymoney
+# Where's My Money :money:
 
 ## Project setup
 ```
