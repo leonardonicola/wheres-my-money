@@ -1,15 +1,15 @@
 <template>
   <div id="app">
     <Home/>
-    <Budgets/>
+    <Expenses/>
   </div>
 </template>
 
 <script>
-import Budgets from './views/Budgets.vue'
+import Expenses from './views/Expenses.vue'
 import Home from './views/Home.vue'
 export default {
-  components:{Budgets, Home}
+  components:{Expenses, Home}
 }
 </script>
 

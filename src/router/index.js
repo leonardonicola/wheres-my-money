@@ -1,19 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Entertainment from '../components/Entertainment.vue'
-import Health from '../components/Health.vue'
-import Essentials from '../components/Essentials.vue'
-import History from '../components/History.vue'
+const Entertainment = () => import('../components/Entertainment.vue')
+const Health = () => import('../components/Health.vue')
+const Essentials = () => import('../components/Essentials.vue')
+const AddExpense = () => import('../components/AddExpense.vue')
 
 Vue.use(VueRouter)
 
 
 const routes = [
-  {
-    path:'/',
-    name:'historic',
-    component: History
-  },
   {
     path: '/health',
     name: 'health',
@@ -25,11 +20,15 @@ const routes = [
     component:Entertainment,
   },
   {
-    path: '/essentials',
+    path: '/',
     name: 'essentials',
     component:Essentials,
   },
-  
+  {
+    path: '/addexpense',
+    name: 'addexpense',
+    component: AddExpense,
+  },
 
 ]
 
