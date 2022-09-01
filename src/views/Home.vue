@@ -13,12 +13,13 @@
 
 <script>
 import Card from '../components/Card.vue'
+import {mapGetters} from 'vuex'
 export default {
     components:{Card},
     computed:{
-      balance(){
-        return this.$store.state.walletBalance
-      }
+      ...mapGetters({
+        balance: 'walletFunds'
+      })
     }
 }
 </script>

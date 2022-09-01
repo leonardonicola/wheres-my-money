@@ -1,49 +1,49 @@
 <template>
   <div class="budgets">
-    <button>+ ADD EXPENSE</button>
+    
+    <router-link to="/addexpense">
+      <div class="budgets__addexpense">
+        <p>+ ADD EXPENSE</p>
+      </div>
+    </router-link>
+
     <h2>Budgets</h2>
+
     <router-link to="/health">
       <div class="budgets__category health">
         <fa icon="heart"/>
         <p>Health</p>
-        <p class="budgets__text">{{currency(health)}}</p>
+        <p class="budgets__text">{{health.budget | toCurrency}}</p>
       </div>
     </router-link>
-    <router-link to="/essentials">
+
+    <router-link to="/">
       <div class="budgets__category essentials">
         <fa icon="shopping-bag"/>
         <p>Essentials</p>
-        <p class="budgets__text">{{currency(essentials)}}</p>
+        <p class="budgets__text">{{essentials.budget | toCurrency}}</p>
       </div>
     </router-link>
+
     <router-link to="/entertainment">
       <div class="budgets__category entertainment">
         <fa icon="film"/>
         <p>Entertainment</p>
-        <p class="budgets__text"> {{currency(entertainment)}}</p>
+        <p class="budgets__text"> {{entertainment.budget | toCurrency}}</p>
       </div>
     </router-link>
-    <div class="budgets__navbar">
-      <router-link to="/">
-        <fa icon="house"/>
-      </router-link>
-    </div>
+
   </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
-  data(){
-    return{
-      essentials: this.$store.state.essentials.budget,
-      health: this.$store.state.health.budget,
-      entertainment: this.$store.state.entertainment.budget
-    }
-  },
-  methods:{
-    currency(cur){
-      return "$" + cur.toLocaleString('en-us', {minimumFractionDigits: 0});
-    }
+  computed:{
+    ...mapGetters('expenses',{
+      health:'get_health',
+      entertainment:'get_entertainment',
+      essentials:'get_essentials'})
   }
 }
 </script>
@@ -70,7 +70,7 @@ export default {
     font-size: .9rem;
   }
 
-  button{
+  &__addexpense{
     border: 0;
     padding: 1.25rem;
     border-radius: 1.25rem;

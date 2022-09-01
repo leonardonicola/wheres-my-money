@@ -1,22 +1,21 @@
 <template>
   <div v-once class="card">
-    <h2>{{cardBalance | toCurrency}}</h2>
+    <h2>{{cardInfos.balance | toCurrency}}</h2>
     <div class="card__number">
      <fa icon="fa-brands fa-cc-mastercard"/>
-     <p>{{this.$store.state.card.number}}</p>
+     <p>{{cardInfos.number}}</p>
     </div>
     <div class="card__name">
-      <p>{{this.$store.state.card.name}}</p>
+      <p>{{cardInfos.name}}</p>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   computed:{
-    cardBalance(){
-      return this.$store.state.card.balance
-    }
+    ...mapGetters(['cardInfos'])
   }
 }
 </script>
