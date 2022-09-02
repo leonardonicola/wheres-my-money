@@ -1,42 +1,90 @@
 <template>
-    <div>
+    <div class="addexpense">
         <h1>Add a expense</h1>
-        <p>Insert a name for the expense</p>
-        <input type="text" v-model="name">
-        <p>Select a category</p>
-        <select name="category" v-model="category">
-            <option value="health">Health</option>
-            <option value="essentials">Essentials</option>
-            <option value="entertainment">Entertainment</option>
-        </select>
-        <p>Price</p>
-        <input type="number" v-model="price">
-        <button @click="addExpense">+ ADD EXPENSE</button>
+        <div class="addexpense__form">
+            <div>
+                <p>Insert a name for the expense</p>
+                <input type="text" v-model="name">
+            </div>
+            <div>
+                <p>Select a category</p>
+                <select name="category" v-model="category">
+                    <option value="health">Health</option>
+                    <option value="essentials">Essentials</option>
+                    <option value="entertainment">Entertainment</option>
+                </select>
+            </div>
+            <div>
+                <p>Price</p>
+                <input type="number" v-model="price"/>
+            </div>
+            <div>
+                <p>Select the type of account that will be debited</p>
+                <select name="account" v-model="account">
+                    <option value="wallet">Wallet</option>
+                    <option value="creditcard">Credit Card</option>
+                </select>
+            </div>
+            <button @click="addExpense">+ ADD EXPENSE</button>
+        </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     data(){
         return{
             price: null,
             category: null,
-            name:null
+            name:null,
+            account:null
         }
     },
     methods:{
         addExpense(){
-            const expense = {
-                price: parseInt(this.price),
-                category: this.category,
-                name:this.name
+            if(this.walletFunds < this.price){
+                window.alert("Your account don't have the funds!")
             }
-            this.$store.commit('expenses/addExpense',{expense})
+            else if (this.price == null || this.category == null 
+            || this.name == null || this.account == null){
+                window.alert('Fill all inputs to add a expense!')
+            }
+            else{
+                const expense = {
+                    price: parseInt(this.price),
+                    category: this.category,
+                    name:this.name
+                }
+                this.$store.commit('expenses/addExpense',{expense})
+                Object.assign(this.$data, this.$options.data.apply(this))
+            }
         }
+    },
+    computed:{
+        ...mapGetters('expenses',['walletFunds'])
     }
 }
 </script>
 
-<style>
+<style lang="scss">
+.addexpense{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    height: 100%;
+    
+    &__form{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: start;
+        align-items: end;
+        gap: 3rem;
 
+        input{
+            width: 15rem;
+            height: 2.5rem;
+            padding: .6rem;
+        }
+    }
+}
 </style>

@@ -5,7 +5,7 @@
         <h1>expenses</h1>
       </div>
       <div class="expenses__historic">
-        <div v-for="expense in categoryGetter.historic" 
+        <div v-for="expense in categoryGetter" 
         :key="expense.name" class="expenses__card">
           <div class="expenses__name">
             <h4>{{expense.name}}</h4>
@@ -19,14 +19,19 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
-    props:['category'],
+    props:['category', 'id'],
     computed:{
-    ...mapGetters('expenses',{
-      categoryGetter: `get_${category}`
-    })
-  }
+      ...mapGetters('expenses',[
+        'getExpense'
+        ]),
+
+    categoryGetter(){
+        return this.getExpense(this.id)
+      }
+      
+   }
 }
 </script>
 

@@ -5,41 +5,36 @@ export default {
             {
                 name:'health',
                 historic:[],
-                budget:200
             },
             {
                 name:'essentials',
                 historic:[],
-                budget:200
             },
             {   
                 name:'entertainment',
-                budget:300,
                 historic:[
                 {
-                    name: "Comprinhas no shopping"
-                    ,price: 1200
+                    name: "Shopping",
+                    price: 1200
                 },
                 ]
             }
-        ]
+        ],
+        walletBalance:23
     },
     getters:{
-        get_health(state){
-            return state.expenses[0]
+        getExpense: (state) => (index) => {
+            return state.expenses[index].historic
         },
-        get_entertainment(state){
-            return state.expenses[2]
-        },
-        get_essentials(state){
-            return state.expenses[1]
+        walletFunds(state){
+        return state.walletBalance
         }
     },
     mutations:{
         addExpense(state,{expense}){
             const filter = state.expenses.find(elem => elem.name == expense.category)
             const indexOfFilter = state.expenses.indexOf(filter)
-
+            state.walletBalance -= expense.price
             state.expenses[indexOfFilter].historic.push({price: expense.price, name: expense.name})
         }
     }

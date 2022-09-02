@@ -7,13 +7,12 @@
       </div>
     </router-link>
 
-    <h2>Budgets</h2>
+    <h2>Expenses per category</h2>
 
     <router-link to="/health">
       <div class="budgets__category health">
         <fa icon="heart"/>
         <p>Health</p>
-        <p class="budgets__text">{{health.budget | toCurrency}}</p>
       </div>
     </router-link>
 
@@ -21,7 +20,6 @@
       <div class="budgets__category essentials">
         <fa icon="shopping-bag"/>
         <p>Essentials</p>
-        <p class="budgets__text">{{essentials.budget | toCurrency}}</p>
       </div>
     </router-link>
 
@@ -29,7 +27,6 @@
       <div class="budgets__category entertainment">
         <fa icon="film"/>
         <p>Entertainment</p>
-        <p class="budgets__text"> {{entertainment.budget | toCurrency}}</p>
       </div>
     </router-link>
 
@@ -37,14 +34,8 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
 export default {
-  computed:{
-    ...mapGetters('expenses',{
-      health:'get_health',
-      entertainment:'get_entertainment',
-      essentials:'get_essentials'})
-  }
+  
 }
 </script>
 
@@ -52,7 +43,7 @@ export default {
 .budgets{
   display: flex;
   flex-direction: column;
-  width: 450px;
+  width: 23rem;
   padding: 40px;
   height: 100vh;
   background-color: #F6F7FF;

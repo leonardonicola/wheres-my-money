@@ -1,5 +1,5 @@
 <template>
-  <Expense category="essentials"/>
+  <Expense category="Essentials" id="1"/>
 </template>
 
 <script>
