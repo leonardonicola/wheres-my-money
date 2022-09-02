@@ -1,5 +1,5 @@
 <template>
-  <Expense category="entertainment"/>
+  <Expense category="Entertainment" id="2"/>
 </template>
 
 <script>

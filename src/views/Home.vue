@@ -17,7 +17,7 @@ import {mapGetters} from 'vuex'
 export default {
     components:{Card},
     computed:{
-      ...mapGetters({
+      ...mapGetters('expenses',{
         balance: 'walletFunds'
       })
     }
