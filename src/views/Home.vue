@@ -3,7 +3,7 @@
     <Card/>
     <div class="home__balance">
       <h2>Wallet Balance</h2>
-      <h1>{{balance | toCurrency}}</h1>
+      <h1>{{this.$store.state.expenses.walletBalance | toCurrency}}</h1>
     </div>
     <transition name="fade" mode="out-in">
       <router-view/>
@@ -13,14 +13,8 @@
 
 <script>
 import Card from '../components/Card.vue'
-import {mapGetters} from 'vuex'
 export default {
-    components:{Card},
-    computed:{
-      ...mapGetters('expenses',{
-        balance: 'walletFunds'
-      })
-    }
+    components:{Card}
 }
 </script>
 
@@ -30,7 +24,7 @@ export default {
     width: 100%;
     height: 100vh;
     padding: 30px;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(4, 1fr);
 
     &__balance{
@@ -51,6 +45,8 @@ export default {
         margin: 0;
       }
     }
+
+
   }
 
 </style>

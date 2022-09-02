@@ -78,13 +78,33 @@ export default {
         grid-template-columns: 1fr 1fr;
         justify-items: start;
         align-items: end;
-        gap: 3rem;
+        gap: 1.5rem;
 
-        input{
+        input, select{
             width: 15rem;
             height: 2.5rem;
             padding: .6rem;
         }
     }
+
+    button{
+        background-color: #293366;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 1rem;
+        outline: 0;
+        border: 0;
+        transition: all ease .5s;
+        &:hover{
+            background-color: #344180;
+            transform: scale(1.05);
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+  .addexpense__form{
+    grid-template-columns: 1fr;
+  }
 }
 </style>

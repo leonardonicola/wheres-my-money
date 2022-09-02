@@ -3,7 +3,7 @@
     <h2>{{cardInfos.balance | toCurrency}}</h2>
     <div class="card__number">
      <fa icon="fa-brands fa-cc-mastercard"/>
-     <p>{{cardInfos.number}}</p>
+     <p>{{cardInfos.number | hideNumber}}</p>
     </div>
     <div class="card__name">
       <p>{{cardInfos.name}}</p>
@@ -22,8 +22,7 @@ export default {
 
 <style lang="scss">
 .card{
-  display: flex;
-  flex-direction: column;
+  margin: 2rem 0;
   height: fit-content;
   width: 15rem;
   padding: 1.3rem;
@@ -32,8 +31,8 @@ export default {
   border-radius: 2rem;
   background-color: #293366;
   font-weight: bold;
-  grid-column-start:4;
-  grid-column-end: 5;
+  grid-column-start:3;
+  grid-column-end: 4;
 
   h2:first-child{
     font-size: 1.1rem;
@@ -62,6 +61,13 @@ export default {
   svg{
     font-size: 1.25rem;
     width: fit-content;
+  }
+
+  @media screen and (max-width: 600px) {
+        grid-row-start:2;
+        grid-row-end: 3;
+        grid-column-start:1;
+        grid-column-end: 3;
   }
 }
 </style>

@@ -21,6 +21,12 @@ Vue.filter('toCurrency', function (value) {
   return formatter.format(value);
 });
 
+Vue.filter('hideNumber', function (value) {
+  let firstNumbers = value.split(' ')
+  firstNumbers[0] = "****"
+  return firstNumbers.join(' ')
+});
+
 Vue.config.productionTip = false
 
 new Vue({
