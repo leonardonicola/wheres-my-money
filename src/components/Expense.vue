@@ -5,7 +5,7 @@
         <h1>expenses</h1>
       </div>
       <div class="expenses__historic">
-        <div v-for="expense in categoryGetter" 
+        <div v-for="expense in getExpense(id)" 
         :key="expense.name" class="expenses__card">
           <div class="expenses__name">
             <h4>{{expense.name}}</h4>
@@ -26,11 +26,6 @@ export default {
       ...mapGetters('expenses',[
         'getExpense'
         ]),
-
-    categoryGetter(){
-        return this.getExpense(this.id)
-      }
-      
    }
 }
 </script>
@@ -38,21 +33,51 @@ export default {
 <style lang="scss">
   .expenses{
     grid-column-start: 1;
-    grid-column-end: 5;
+    grid-column-end: 4;
+
+    &__title{
+      display: flex;
+      flex-wrap: wrap;
+
+      h1:first-of-type{
+        margin-bottom: 0;
+      }
+    }
 
     &__historic{
       height: 100%;
-      overflow-y: scroll;
-      display: flex;
-      flex-wrap: wrap;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
       justify-content: space-between;
       padding-right: 2rem;
       gap: 2rem;
+
+      &::-webkit-scrollbar-track{
+        background-color: #F5F5F5;
+        border-radius: 2rem;
+      }
+
+      &::-webkit-scrollbar{
+        width: 6px;
+        background-color: #F5F5F5;
+      }
+
+      &::-webkit-scrollbar-thumb{
+        border-radius: 2rem;
+        background-color: #5c5c5c;
+      }
+
+      @media screen and (max-width: 700px) {
+        grid-template-columns: 1fr 1fr;
+      }
+
     }
 
     &__card{
       border-radius: 2rem;
-      width: 35%;
+      width: 100%;
+      min-width: 5rem;
       height: 10rem;
       background-color: rgb(219, 219, 219);
       display: flex;
@@ -61,6 +86,8 @@ export default {
     }
     
     &__name{
+      display: flex;
+      align-items: center;
       height: 50%;
       padding: 1.5rem;
       color: white;
@@ -73,6 +100,13 @@ export default {
         font-weight: bolder;
       }
     }
+
+    @media screen and (max-width: 700px) {
+        grid-row-start:3;
+        grid-row-end: 4;
+        grid-column-start:1;
+        grid-column-end: 4;
+      }
 
   }
 </style>

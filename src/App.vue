@@ -14,13 +14,14 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700;900&display=swap');
 *{
   box-sizing: border-box;
-  font-family: 'Roboto', 'Arial', sans-serif;
+  font-family: 'Rubik', 'Arial', sans-serif;
 }
 html, body {
   height: 100%;
+  margin: 0;
   overflow-y: hidden;
 }
 
@@ -30,8 +31,6 @@ html, body {
 
 
 .expenses{
-  grid-row-start: 2;
-  grid-row-end: 4;
   
   &__title{
     display: flex;
@@ -56,6 +55,12 @@ html, body {
 .fade-enter,
 .fade-leave-to{
   opacity: 0;
+}
+
+@media screen and (max-width: 600px) {
+  body,html{
+    overflow-y: auto;
+  }
 }
 
 </style>
