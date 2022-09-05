@@ -21,11 +21,11 @@ export default {
 <style lang="scss">
   .home{
     display: grid;
-    width: 100%;
+    width: calc(100% - 11rem);
     height: 100vh;
     padding: 30px;
     grid-template-columns: repeat(3,1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(4, auto);
 
     &__balance{
       display: flex;

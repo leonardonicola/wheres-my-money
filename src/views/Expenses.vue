@@ -1,43 +1,53 @@
 <template>
-  <div class="budgets">
+  <transition name="slide" mode="out-in">
+    <div v-if="toggle" class="budgets">
+      
+        <div class="budgets__addexpense" @click="goTo('addexpense')">
+          <p>+ ADD EXPENSE</p>
+        </div>
+
+      <h2>Expenses per category</h2>
+
+        <div class="budgets__category health" @click="goTo('health')">
+          <fa icon="heart"/>
+          <p>Health</p>
+        </div>
     
-    <router-link to="/addexpense">
-      <div class="budgets__addexpense">
-        <p>+ ADD EXPENSE</p>
-      </div>
-    </router-link>
-
-    <h2>Expenses per category</h2>
-
-    <router-link to="/health">
-      <div class="budgets__category health">
-        <fa icon="heart"/>
-      </div>
-    </router-link>
-
-    <router-link to="/">
-      <div class="budgets__category essentials">
-        <fa icon="shopping-bag"/>
-      </div>
-    </router-link>
-
-    <router-link to="/entertainment">
-      <div class="budgets__category entertainment">
-        <fa icon="film"/>
-      </div>
-    </router-link>
-
-  </div>
+        <div class="budgets__category essentials" @click="goTo('')">
+          <fa icon="shopping-bag"/>
+          <p>Essentials</p>
+        </div>
+     
+        <div class="budgets__category entertainment" @click="goTo('entertainment')">
+          <fa icon="film"/>
+          <p>Entertainment</p>
+        </div>
+      
+    </div>
+  </transition>
 </template>
 
 <script>
 export default {
-  
+  props:['toggle'],
+  methods:{
+    goTo(route){
+      if(this.$route.name == route){
+        this.$emit('closeSidebarOnClick',false)
+      }else{
+        this.$emit('closeSidebarOnClick',false)
+        this.$router.push(`/${route}`)
+      }
+    }
+  }
 }
 </script>
 
 <style lang="scss">
 .budgets{
+  position: fixed;
+  top: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,12 +63,12 @@ export default {
 
   svg{
     color: black;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 
   p{
     font-size: .9rem;
-  }
+  }  
 
   &__addexpense{
     width: 7rem;
@@ -68,6 +78,11 @@ export default {
     background-color: #2BC3A9;
     color: #fff;
     font-weight: bold;
+    transition: all .6s ease;
+
+    &:hover{
+      background-color: #30d6ba;
+    }
   }
 
   &__navbar{
@@ -96,13 +111,21 @@ export default {
     background-color: #E9EBF4;
     color: #fff;
     font-weight: bold;
+    transition: all .6s ease;
 
+    &:hover{
+      transform: scale(1.1);
+    }
+
+    >p {
+      display: none;
+    }
 
   }
 
   .health{
-
     background-color: #D2ECF3;
+    
 
     svg, p{
       color: #4f8391;
@@ -118,7 +141,6 @@ export default {
   }
 
   .entertainment{
-
     background-color: #E1E3FF;
 
     svg,p{
@@ -130,7 +152,20 @@ export default {
 
 @media screen and (max-width: 760px) {
   .budgets{
-    display: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &__category{
+      justify-content: flex-start;
+      width: 15rem;
+      >p {
+        display: block;
+      }
+    }
   }
 }
 </style>

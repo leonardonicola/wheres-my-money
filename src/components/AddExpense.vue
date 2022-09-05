@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
     data(){
         return{
@@ -43,7 +42,7 @@ export default {
     },
     methods:{
         addExpense(){
-            if(this.walletFunds < this.price){
+            if(this.$store.state.walletBalance < this.price){
                 window.alert("Your account don't have the funds!")
             }
             else if (this.price == null || this.category == null 
@@ -54,15 +53,13 @@ export default {
                 const expense = {
                     price: parseInt(this.price),
                     category: this.category,
-                    name:this.name
+                    name:this.name,
+                    account: this.account
                 }
-                this.$store.commit('expenses/addExpense',{expense})
+                this.$store.dispatch('checkAccount',{expense})
                 Object.assign(this.$data, this.$options.data.apply(this))
             }
         }
-    },
-    computed:{
-        ...mapGetters('expenses',['walletFunds'])
     }
 }
 </script>

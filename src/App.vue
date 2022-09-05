@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Home/>
-    <Expenses/>
+    <Expenses :toggle="toggle" @closeSidebarOnClick="toggle = $event"/>
+    <div class="hamburguer">
+      <fa v-if="toggle" @click="toggle = false" icon="close"/>
+      <fa v-else @click="toggle = true" icon="bars"/>
+    </div>
   </div>
 </template>
 
@@ -10,7 +14,14 @@ import Expenses from './views/Expenses.vue'
 import Home from './views/Home.vue'
 export default {
   components:{Expenses, Home},
-  beforeCreate() { this.$store.commit('expenses/initialiseStore');},
+  data(){
+    return{
+      toggle:false
+    }
+  },
+  mounted(){
+    this.$store.commit('expenses/initialiseStore');
+  },
 }
 </script>
 
@@ -21,31 +32,7 @@ export default {
   font-family: 'Rubik', 'Arial', sans-serif;
 }
 html, body {
-  height: 100%;
   margin: 0;
-  overflow-y: hidden;
-}
-
-#app{
-  display: flex;
-}
-
-
-.expenses{
-  
-  &__title{
-    display: flex;
-    gap: 1rem;
-    color: #261D56;
-
-    h1:first-of-type{
-      font-weight: bolder;
-    }
-
-    h1:last-of-type{
-      font-weight: 400;
-    }
-  }
 }
 
 .fade-enter-active,
@@ -58,10 +45,33 @@ html, body {
   opacity: 0;
 }
 
-@media screen and (max-width: 600px) {
-  body,html{
-    overflow-y: auto;
-  }
+.slide-enter-active,
+.slide-leave-active{
+  transition: all .5s ease;
 }
+
+.slide-enter,
+.slide-leave-to{
+  transform: translate(100%,0);
+}
+
+.hamburguer{
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 2;
+
+    svg{
+      color: black;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all .2s ease;
+
+      &:hover{
+        transform: scale(1.1);
+      }
+    }
+  }
+
 
 </style>

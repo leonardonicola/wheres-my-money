@@ -34,24 +34,31 @@ export default {
   .expenses{
     grid-column-start: 1;
     grid-column-end: 4;
+    margin-bottom: 2rem;
 
     &__title{
       display: flex;
       flex-wrap: wrap;
 
+      gap: 1rem;
+      color: #261D56;
+
       h1:first-of-type{
-        margin-bottom: 0;
+        font-weight: bolder;
+      }
+
+      h1:last-of-type{
+        font-weight: 400;
       }
     }
 
     &__historic{
-      height: 100%;
-      overflow-y: auto;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       justify-content: space-between;
       padding-right: 2rem;
       gap: 2rem;
+      margin-bottom: 1rem;
 
       &::-webkit-scrollbar-track{
         background-color: #F5F5F5;
@@ -77,6 +84,7 @@ export default {
     &__card{
       border-radius: 2rem;
       width: 100%;
+      max-width: 20rem;
       min-width: 5rem;
       height: 10rem;
       background-color: rgb(219, 219, 219);

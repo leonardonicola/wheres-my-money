@@ -42,10 +42,12 @@ export default {
         }
     },
     mutations:{
-        addExpense(state,{expense}){
+        addExpense(state, {expense}){   
+            if(expense.account == 'wallet'){
+                state.walletBalance -= expense.price
+            }
             const filter = state.expenses.find(elem => elem.name == expense.category)
             const indexOfFilter = state.expenses.indexOf(filter)
-            state.walletBalance -= expense.price
             state.expenses[indexOfFilter].historic.push({price: expense.price, name: expense.name})
             localStorage.setItem('expenses', JSON.stringify(state.expenses))
             localStorage.setItem('walletBalance', JSON.stringify(state.walletBalance))
