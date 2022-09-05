@@ -9,7 +9,8 @@
 import Expenses from './views/Expenses.vue'
 import Home from './views/Home.vue'
 export default {
-  components:{Expenses, Home}
+  components:{Expenses, Home},
+  beforeCreate() { this.$store.commit('expenses/initialiseStore');},
 }
 </script>
 
