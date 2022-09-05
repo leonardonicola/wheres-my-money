@@ -1,5 +1,5 @@
 <template>
-  <div v-once class="card">
+  <div class="card">
     <h2>{{cardInfos.balance | toCurrency}}</h2>
     <div class="card__number">
      <fa icon="fa-brands fa-cc-mastercard"/>

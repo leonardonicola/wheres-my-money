@@ -8,7 +8,7 @@ export default new Vuex.Store({
     card:{
       name:'Leonardo Nicola',
       number:'1239 1823',
-      balance:2011,
+      balance:2031,
     }
   },
   getters: {
@@ -18,13 +18,15 @@ export default new Vuex.Store({
   },
   mutations:{
     addCardExpense(state, price){
-      state.balance -= price
+      state.card.balance -= price
+      localStorage.setItem('cardBalance', JSON.stringify(state.card.balance))
     }
   },
   actions:{
       checkAccount({commit}, {expense}){
+        
           if( expense.account == 'creditcard'){
-              commit('addCardExpense', expense.price)
+            commit('addCardExpense', expense.price)
           }
           commit('expenses/addExpense', {expense})
       }

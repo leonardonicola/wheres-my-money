@@ -52,10 +52,14 @@ export default {
             localStorage.setItem('expenses', JSON.stringify(state.expenses))
             localStorage.setItem('walletBalance', JSON.stringify(state.walletBalance))
         },
-        initialiseStore(state){
+        
+    },
+    actions:{
+        initialiseStore({state, rootState}){
             if(localStorage.getItem('expenses') && localStorage.getItem('walletBalance')){
                 state.expenses = JSON.parse(localStorage.getItem('expenses'))
                 state.walletBalance = JSON.parse(localStorage.getItem('walletBalance'))
+                rootState.card.balance = JSON.parse(localStorage.getItem('cardBalance'))
             }
         }
     }

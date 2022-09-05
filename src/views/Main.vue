@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Expenses from './views/Expenses.vue'
-import Home from './views/Home.vue'
+import Expenses from './Expenses.vue'
+import Home from './Home.vue'
 export default {
   components:{Expenses, Home},
   data(){
@@ -20,20 +20,12 @@ export default {
     }
   },
   mounted(){
-    this.$store.dispatch('expenses/initialiseStore');
-  },
+    this.$store.commit('expenses/initialiseStore');
+  }
 }
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700;900&display=swap');
-*{
-  box-sizing: border-box;
-  font-family: 'Rubik', 'Arial', sans-serif;
-}
-html, body {
-  margin: 0;
-}
 
 .fade-enter-active,
 .fade-leave-active{
