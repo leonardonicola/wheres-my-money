@@ -16,7 +16,7 @@
             </div>
             <div>
                 <p>Price</p>
-                <input type="number" v-model="price"/>
+                <input type="number" min="0" v-model="price"/>
             </div>
             <div>
                 <p>Select the type of account that will be debited</p>
@@ -42,8 +42,8 @@ export default {
     },
     methods:{
         addExpense(){
-            if(this.$store.state.walletBalance < this.price){
-                window.alert("Your account don't have the funds!")
+            if(this.$store.state.walletBalance < this.price || this.$store.state.card.balance < this.price){
+                window.alert("Your account don't have the necessary funds! Look out!")
             }
             else if (this.price == null || this.category == null 
             || this.name == null || this.account == null){
@@ -69,6 +69,7 @@ export default {
     grid-column-start: 1;
     grid-column-end: 4;
     height: 100%;
+    margin-bottom: 1rem;
     
     &__form{
         display: grid;
@@ -82,6 +83,12 @@ export default {
             height: 2.5rem;
             padding: .6rem;
         }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
     }
 
     button{

@@ -35,7 +35,6 @@ export default {
       if(this.$route.name == route){
         this.$emit('closeSidebarOnClick',false)
       }else{
-        this.$emit('closeSidebarOnClick',false)
         this.$router.push(`/${route}`)
       }
     }
@@ -78,6 +77,7 @@ export default {
     background-color: #2BC3A9;
     color: #fff;
     font-weight: bold;
+    cursor: pointer;
     transition: all .6s ease;
 
     &:hover{
@@ -101,6 +101,7 @@ export default {
     display: flex;
     position: relative;
     align-items: center;
+    cursor: pointer;
     justify-content: center;
     gap: 1.3rem;
     height: 4rem;

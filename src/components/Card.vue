@@ -60,7 +60,6 @@ export default {
 
   svg{
     font-size: 1.25rem;
-    width: fit-content;
   }
 
   @media screen and (max-width: 600px) {

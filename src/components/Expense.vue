@@ -85,7 +85,7 @@ export default {
       border-radius: 2rem;
       width: 100%;
       max-width: 20rem;
-      min-width: 5rem;
+      min-width: 7.6rem;
       height: 10rem;
       background-color: rgb(219, 219, 219);
       display: flex;
@@ -96,10 +96,12 @@ export default {
     &__name{
       display: flex;
       align-items: center;
+      width: 100%;
       height: 50%;
       padding: 1.5rem;
       color: white;
       background-color: #293366;
+      justify-content: center;
     }
     &__price{
       height: 50%;
