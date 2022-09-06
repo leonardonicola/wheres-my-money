@@ -12,6 +12,7 @@ The following technologies was used to build the project:
 - [Vue](https://vuejs.org/)
 - [Vue-Router](https://router.vuejs.org/)
 - [Vuex](https://vuex.vuejs.org/)
+- [SASS](https://sass-lang.com)
 </br>
 
 ### Features
