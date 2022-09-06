@@ -25,6 +25,11 @@ const routes = [
     name: 'addexpense',
     component: () => import('../components/AddExpense.vue'),
   },
+  {
+    path: '/addfunds',
+    name: 'addfunds',
+    component: () => import('../components/AddFunds.vue'),
+  },
 
 ]
 

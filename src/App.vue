@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Home/>
-    <Expenses :toggle="toggle" @closeSidebarOnClick="toggle = $event"/>
+    <Menu :toggle="toggle" @closeSidebarOnClick="toggle = $event"/>
     <div class="hamburguer">
       <fa v-if="toggle" @click="toggle = false" icon="close"/>
       <fa v-else @click="toggle = true" icon="bars"/>
@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import Expenses from './views/Expenses.vue'
+import Menu from './views/Menu.vue'
 import Home from './views/Home.vue'
 export default {
-  components:{Expenses, Home},
+  components:{Menu, Home},
   data(){
     return{
       toggle:false

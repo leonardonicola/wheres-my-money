@@ -52,7 +52,10 @@ export default {
             localStorage.setItem('expenses', JSON.stringify(state.expenses))
             localStorage.setItem('walletBalance', JSON.stringify(state.walletBalance))
         },
-        
+        addFundsToWallet(state, value){
+            state.walletBalance += value
+            localStorage.setItem('walletBalance', JSON.stringify(state.walletBalance))
+        }
     },
     actions:{
         initialiseStore({state, rootState}){

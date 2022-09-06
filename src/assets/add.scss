@@ -1,0 +1,46 @@
+.add{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    height: 100%;
+    margin-bottom: 1rem;
+    
+    &__form{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: start;
+        align-items: end;
+        gap: 1.5rem;
+
+        input, select{
+            width: 15rem;
+            height: 2.5rem;
+            padding: .6rem;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+    }
+
+    button{
+        background-color: #293366;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 1rem;
+        outline: 0;
+        border: 0;
+        transition: all ease .5s;
+        &:hover{
+            background-color: #344180;
+            transform: scale(1.05);
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+  .add{
+    grid-template-columns: 1fr;
+  }
+}

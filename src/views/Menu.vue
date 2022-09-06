@@ -1,24 +1,28 @@
 <template>
   <transition name="slide" mode="out-in">
-    <div v-if="toggle" class="budgets">
+    <div v-if="toggle" class="menu">
       
-        <div class="budgets__addexpense" @click="goTo('addexpense')">
+        <div class="menu__add expenses" @click="goTo('addexpense')">
           <p>+ ADD EXPENSE</p>
+        </div>
+
+        <div class="menu__add funds" @click="goTo('addfunds')">
+          <p>+ ADD FUNDS</p>
         </div>
 
       <h2>Expenses per category</h2>
 
-        <div class="budgets__category health" @click="goTo('health')">
+        <div class="menu__category health" @click="goTo('health')">
           <fa icon="heart"/>
           <p>Health</p>
         </div>
     
-        <div class="budgets__category essentials" @click="goTo('')">
+        <div class="menu__category essentials" @click="goTo('')">
           <fa icon="shopping-bag"/>
           <p>Essentials</p>
         </div>
      
-        <div class="budgets__category entertainment" @click="goTo('entertainment')">
+        <div class="menu__category entertainment" @click="goTo('entertainment')">
           <fa icon="film"/>
           <p>Entertainment</p>
         </div>
@@ -42,8 +46,10 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.budgets{
+<style lang="scss" scoped>
+@import '../assets/_shared';
+
+.menu{
   position: fixed;
   top: 0;
   right: 0;
@@ -69,20 +75,17 @@ export default {
     font-size: .9rem;
   }  
 
-  &__addexpense{
+  &__add{
     width: 7rem;
     border: 0;
     padding: 1.25rem;
     border-radius: 1.25rem;
-    background-color: #2BC3A9;
     color: #fff;
     font-weight: bold;
     cursor: pointer;
     transition: all .6s ease;
+    margin: 1rem 0;
 
-    &:hover{
-      background-color: #30d6ba;
-    }
   }
 
   &__navbar{
@@ -127,9 +130,8 @@ export default {
   .health{
     background-color: #D2ECF3;
     
-
     svg, p{
-      color: #4f8391;
+      color: $health-main-color;
     }
   }
 
@@ -137,7 +139,7 @@ export default {
     background-color: #E1E3FF;
 
     svg, p{
-      color: #a888c0;
+      color: $essentials-main-color;
     }
   }
 
@@ -145,14 +147,29 @@ export default {
     background-color: #E1E3FF;
 
     svg,p{
-      color: #8288C1;
+      color: $entertainment-main-color;
     }
   }
 
 }
 
+.funds{
+  background-color: #26a893;
+
+  &:hover{
+    background-color: #30d6ba;
+  }
+}
+.expenses{
+  background-color: #6326a8;
+
+  &:hover{
+    background-color: #8234db;
+  }
+}
+
 @media screen and (max-width: 760px) {
-  .budgets{
+  .menu{
     top: 0;
     right: 0;
     bottom: 0;

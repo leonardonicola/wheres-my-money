@@ -1,13 +1,13 @@
 <template>
-  <div class="expenses">
+  <div class="expenses" :class="category">
       <div class="expenses__title">
         <h1>{{category}}</h1>
         <h1>expenses</h1>
       </div>
       <div class="expenses__historic">
         <div v-for="expense in getExpense(id)" 
-        :key="expense.name" class="expenses__card">
-          <div class="expenses__name">
+        :key="expense.name" class="expenses__card" >
+          <div class="expenses__name" :class="`${category}__card`">
             <h4>{{expense.name}}</h4>
           </div>
           <div class="expenses__price">
@@ -30,10 +30,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import '../assets/_shared';
   .expenses{
     grid-column-start: 1;
     grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 5;
     margin-bottom: 2rem;
 
     &__title{
@@ -119,4 +122,35 @@ export default {
       }
 
   }
+
+  .Health{
+    h1{
+      color: $health-main-color;
+    }
+
+    &__card{
+      background-color: $health-main-color;
+    }
+  }
+
+  .Essentials{
+    h1{
+      color: $essentials-main-color
+    }
+
+    &__card{
+      background-color: $essentials-main-color;
+    }
+  }
+  
+  .Entertainment{
+    h1{
+      color: $entertainment-main-color
+    }
+
+    &__card{
+      background-color: $entertainment-main-color;
+    }
+  }
+
 </style>
