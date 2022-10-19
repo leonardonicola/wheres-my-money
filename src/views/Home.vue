@@ -1,23 +1,21 @@
 <template>
   <div class="home">
-    <Card/>
+    <card/>
     <div class="home__balance">
       <h2>Wallet Balance</h2>
       <h1>{{this.$store.state.expenses.walletBalance | toCurrency}}</h1>
     </div>
-    <transition name="fade" mode="out-in">
-      <router-view/>
-    </transition>
+    <viewer :id="this.$store.state.viewer.id"/>
   </div>
 </template>
 
 <script>
+import Viewer from '../components/Viewer.vue'
 import Card from '../components/Card.vue'
 export default {
-    components:{Card}
+    components:{Card, Viewer}
 }
 </script>
-
 <style lang="scss" scoped>
   .home{
     display: grid;
